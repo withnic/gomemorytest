@@ -6,6 +6,29 @@ func main() {
 	returnValueUsePointer()
 	noReturnNew()
 	returnNew()
+
+	sli := []int{1, 2, 3}
+	sliceGet(sli)
+
+	i := 1
+	pointerGet(&i)
+	noReturnPointerGet(&i)
+}
+
+// slizeGet has alarting leaking param message
+func sliceGet(sl []int) []int {
+	return sl[:]
+}
+
+// pointerGet has alarting leaking param message
+func pointerGet(pt *int) *int {
+	*pt = *pt + 1
+	return pt
+}
+
+// noReturnPointerGet has no alarting
+func noReturnPointerGet(pt *int) {
+	*pt = *pt + 1
 }
 
 // noReturnNew use stack
